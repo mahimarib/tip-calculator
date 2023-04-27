@@ -62,7 +62,7 @@ function manualTipOnChange(event) {
     const totalInput = document.getElementById('total');
     const totalSpan = document.getElementById('custom-total');
     const customTip = parseNum(input.value);
-    if (customTip > customTip > -1) {
+    if (customTip || customTip > -1) {
         totalSpan.textContent = `total: $${(
             customTip + parseNum(totalInput.value)
         ).toFixed(2)}`;
@@ -92,6 +92,8 @@ window.onload = () => {
     manualTip.addEventListener('input', manualTipOnChange);
     manualTip.addEventListener('focusin', selectCustomTip);
     manualTip.addEventListener('focusout', event => {
-        event.target.value = parseNum(event.target.value).toFixed(2);
+        event.target.value = parseNum(event.target.value)
+            ? parseNum(event.target.value).toFixed(2)
+            : '';
     });
 };

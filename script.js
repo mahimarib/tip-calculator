@@ -43,10 +43,10 @@ function updateTip(total) {
         button => parseNum(button.value) > 0
     );
 
-    fixedChoice.forEach(button => updateLabel(form, total, button));
+    fixedChoice.forEach(button => updateLabel({ form, total, button }));
 }
 
-function updateLabel(form, total, button) {
+function updateLabel({ form, total, button }) {
     const tip = (parseNum(button.value) / 100) * total;
     const tippedTotal = total + tip;
     const name = button.id;

@@ -85,7 +85,7 @@ input {
 
 #total {
     border: none;
-    border-bottom: 2px dashed black;
+    border-bottom: 1px solid black;
     align-self: stretch;
     font-size: 1em;
     max-width: 100px;
@@ -94,11 +94,6 @@ input {
 
 input:focus {
     outline: none;
-}
-
-input[type='number'] {
-    appearance: number;
-    -moz-appearance: textfield;
 }
 
 .dollar {
@@ -146,6 +141,10 @@ input[type='number'] {
     font-size: 1em;
     text-align: center;
     font-weight: 400;
+}
+
+.tip h2 {
+    margin-top: 0;
 }
 
 #tip-selection {
@@ -230,13 +229,12 @@ input[type='number'] {
 @media (max-width: 600px) {
     body {
         background-color: white;
+        height: unset;
     }
 
     main {
         max-width: unset;
         width: 100%;
-        height: 100vh;
-        height: 100svh;
     }
 }
 

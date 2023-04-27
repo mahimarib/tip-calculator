@@ -57,6 +57,25 @@ function updateLabel({ form, total, button }) {
     totalSpan.textContent = `total: $${tippedTotal.toFixed(2)}`;
 }
 
+function manualTipOnChange(event) {
+    const input = event.target;
+    const totalInput = document.getElementById('total');
+    const totalSpan = document.getElementById('custom-total');
+    const customTip = parseNum(input.value);
+    if (customTip > customTip > -1) {
+        totalSpan.textContent = `total: $${(
+            customTip + parseNum(totalInput.value)
+        ).toFixed(2)}`;
+    } else {
+        totalSpan.textContent = 'total: $_____';
+    }
+}
+
+function selectCustomTip() {
+    const customTipRadio = document.getElementById('percent-x');
+    customTipRadio.checked = true;
+}
+
 window.onload = () => {
     const date = document.getElementById('date');
     const time = document.getElementById('time');
@@ -67,6 +86,12 @@ window.onload = () => {
     setInterval(() => updateTime(time), 1000);
 
     const totalInput = document.getElementById('total');
-
     totalInput.addEventListener('input', totalOnChange);
+
+    const manualTip = document.getElementById('manual-tip');
+    manualTip.addEventListener('input', manualTipOnChange);
+    manualTip.addEventListener('focusin', selectCustomTip);
+    manualTip.addEventListener('focusout', event => {
+        event.target.value = parseNum(event.target.value).toFixed(2);
+    });
 };

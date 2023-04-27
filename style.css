@@ -21,6 +21,9 @@ main {
     padding: 4em 2em;
     background-color: white;
     max-width: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 header {
@@ -47,8 +50,19 @@ p {
     margin: 0;
 }
 
-.hidden {
-    display: none;
+section.tip > * {
+    overflow: hidden;
+    height: auto;
+    max-height: 300px;
+    transition: max-height 0.6s linear;
+}
+
+section.tip > *:not(.hidden) {
+    transition-delay: 0.6s;
+}
+
+section.tip > .hidden {
+    max-height: 0;
 }
 
 form label {
@@ -211,4 +225,27 @@ input[type='number'] {
 
 .copy::after {
     content: '>>>';
+}
+
+@media (max-width: 600px) {
+    body {
+        background-color: white;
+    }
+
+    main {
+        max-width: unset;
+        width: 100%;
+        height: 100vh;
+        height: 100svh;
+    }
+}
+
+@media (min-width: 1800px) {
+    body {
+        font-size: 25px;
+    }
+
+    main {
+        max-width: unset;
+    }
 }

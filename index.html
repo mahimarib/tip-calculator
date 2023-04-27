@@ -21,83 +21,91 @@
     </head>
     <body>
         <main>
-            <header>
-                <h1>Tip Calculator</h1>
-                <p>made by mahimarib</p>
-            </header>
-            <section class="time-container">
-                <p id="date">MM/DD/YY</p>
-                <p id="time">HH:MM AM</p>
-            </section>
-            <section class="total">
-                <form onsubmit="return false">
-                    <label for="total">
-                        total:
-                        <div class="dollar">
-                            <input
-                                autocomplete="off"
-                                inputmode="decimal"
-                                pattern="\d*"
-                                id="total"
-                                type="text"
-                            />
-                        </div>
-                    </label>
-                </form>
-            </section>
-            <section class="tip">
-                <p id="no-tip" class="">nothing to tip!</p>
-                <div class="hidden" id="suggestion">
-                    <h2>suggested gratituity:</h2>
-                    <form onsubmit="return false" id="tip-selection">
-                        <input
-                            type="radio"
-                            name="tip-amount"
-                            id="percent-15"
-                            value="15"
-                        />
-                        <label for="percent-15">15% - $_____</label>
-                        <span class="total">total: $_____</span>
-                        <input
-                            type="radio"
-                            name="tip-amount"
-                            id="percent-18"
-                            value="18"
-                        />
-                        <label for="percent-18">18% - $_____</label>
-                        <span class="total">total: $_____</span>
-                        <input
-                            type="radio"
-                            name="tip-amount"
-                            id="percent-20"
-                            value="20"
-                        />
-                        <label for="percent-20">20% – $_____ </label>
-                        <span class="total">total: $_____</span>
-                        <input
-                            type="radio"
-                            name="tip-amount"
-                            id="percent-x"
-                            value="-1"
-                        />
-                        <label for="percent-x">
-                            <div>
-                                <label for="manual tip">$</label>
-                                <input type="number" id="manual-tip" />
+            <div class="container">
+                <header>
+                    <h1>Tip Calculator</h1>
+                    <p>made by mahimarib</p>
+                </header>
+                <section class="time-container">
+                    <p id="date">MM/DD/YY</p>
+                    <p id="time">HH:MM AM</p>
+                </section>
+                <section class="total">
+                    <form onsubmit="return false">
+                        <label for="total">
+                            total:
+                            <div class="dollar">
+                                <input
+                                    autocomplete="off"
+                                    inputmode="decimal"
+                                    pattern="\d*"
+                                    type="text"
+                                    id="total"
+                                />
                             </div>
                         </label>
-                        <span class="total">total: $_____</span>
                     </form>
-                </div>
-            </section>
-            <footer>
-                <form onsubmit="return false" class="signature">
-                    <label for="line">
-                        <input type="text" />
-                    </label>
-                </form>
-                <p class="copy">customer copy</p>
-            </footer>
+                </section>
+                <section class="tip">
+                    <p id="no-tip">nothing to tip!</p>
+                    <div class="hidden" id="suggestion">
+                        <h2>suggested gratituity:</h2>
+                        <form onsubmit="return false" id="tip-selection">
+                            <input
+                                type="radio"
+                                name="tip-amount"
+                                id="percent-15"
+                                value="15"
+                            />
+                            <label for="percent-15">15% - $_____</label>
+                            <span class="total">total: $_____</span>
+                            <input
+                                type="radio"
+                                name="tip-amount"
+                                id="percent-18"
+                                value="18"
+                            />
+                            <label for="percent-18">18% - $_____</label>
+                            <span class="total">total: $_____</span>
+                            <input
+                                type="radio"
+                                name="tip-amount"
+                                id="percent-20"
+                                value="20"
+                            />
+                            <label for="percent-20">20% - $_____ </label>
+                            <span class="total">total: $_____</span>
+                            <input
+                                type="radio"
+                                name="tip-amount"
+                                id="percent-x"
+                                value="-1"
+                            />
+                            <label for="percent-x">
+                                <div>
+                                    <label for="manual tip">$</label>
+                                    <input
+                                        autocomplete="off"
+                                        inputmode="decimal"
+                                        pattern="\d*"
+                                        type="text"
+                                        id="manual-tip"
+                                    />
+                                </div>
+                            </label>
+                            <span class="total">total: $_____</span>
+                        </form>
+                    </div>
+                </section>
+                <footer>
+                    <form onsubmit="return false" class="signature">
+                        <label for="line">
+                            <input type="text" />
+                        </label>
+                    </form>
+                    <p class="copy">customer copy</p>
+                </footer>
+            </div>
         </main>
         <script src="script.js"></script>
     </body>

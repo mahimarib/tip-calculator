@@ -76,6 +76,12 @@ function selectCustomTip() {
     customTipRadio.checked = true;
 }
 
+function validateInput(event) {
+    event.target.value = parseNum(event.target.value)
+        ? parseNum(event.target.value).toFixed(2)
+        : '';
+}
+
 window.onload = () => {
     const date = document.getElementById('date');
     const time = document.getElementById('time');
@@ -87,13 +93,10 @@ window.onload = () => {
 
     const totalInput = document.getElementById('total');
     totalInput.addEventListener('input', totalOnChange);
+    totalInput.addEventListener('focusout', validateInput);
 
     const manualTip = document.getElementById('manual-tip');
     manualTip.addEventListener('input', manualTipOnChange);
     manualTip.addEventListener('focusin', selectCustomTip);
-    manualTip.addEventListener('focusout', event => {
-        event.target.value = parseNum(event.target.value)
-            ? parseNum(event.target.value).toFixed(2)
-            : '';
-    });
+    manualTip.addEventListener('focusout', validateInput);
 };

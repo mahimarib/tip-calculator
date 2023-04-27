@@ -62,7 +62,7 @@ function manualTipOnChange(event) {
     const totalInput = document.getElementById('total');
     const totalSpan = document.getElementById('custom-total');
     const customTip = parseNum(input.value);
-    if (customTip || customTip > -1) {
+    if (customTip ^ (customTip > -1)) {
         totalSpan.textContent = `total: $${(
             customTip + parseNum(totalInput.value)
         ).toFixed(2)}`;
@@ -76,10 +76,14 @@ function selectCustomTip() {
     customTipRadio.checked = true;
 }
 
-function validateInput(event) {
-    event.target.value = parseNum(event.target.value)
-        ? parseNum(event.target.value).toFixed(2)
-        : '';
+function validateInput(event, strat) {
+    const num = parseNum(event.target.value);
+    event.target.value = strat(num) ? num.toFixed(2) : '';
+}
+
+function clearZero(event) {
+    const num = parseNum(event.target.value);
+    event.target.value = !num ? '' : num;
 }
 
 window.onload = () => {
@@ -93,10 +97,15 @@ window.onload = () => {
 
     const totalInput = document.getElementById('total');
     totalInput.addEventListener('input', totalOnChange);
-    totalInput.addEventListener('focusout', validateInput);
+    totalInput.addEventListener('focusout', e =>
+        validateInput(e, num => num && num > -1)
+    );
 
     const manualTip = document.getElementById('manual-tip');
     manualTip.addEventListener('input', manualTipOnChange);
     manualTip.addEventListener('focusin', selectCustomTip);
-    manualTip.addEventListener('focusout', validateInput);
+    manualTip.addEventListener('focusin', clearZero);
+    manualTip.addEventListener('focusout', e =>
+        validateInput(e, num => num || num > -1)
+    );
 };

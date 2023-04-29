@@ -127,6 +127,12 @@ window.onload = () => {
     const manualTip = document.getElementById('manual-tip');
     manualTip.addEventListener('input', manualTipOnChange);
     manualTip.addEventListener('focusin', selectCustomTip);
+    manualTip.addEventListener('focusin', e =>
+        e.target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end',
+        })
+    );
     manualTip.addEventListener('focusin', clearZero);
     manualTip.addEventListener('focusout', e =>
         validateInput(e, num => num ^ (num > -1))

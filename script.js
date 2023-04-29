@@ -28,21 +28,27 @@ function totalOnChange(event) {
     if (total && total > -1) {
         noTip.classList.add('hidden');
         tipSuggestion.classList.remove('hidden');
+        tipSuggestion.addEventListener('transitionstart', changeScroll);
         updateTip(total);
     } else {
+        tipSuggestion.removeEventListener('transitionstart', changeScroll);
         noTip.classList.remove('hidden');
         tipSuggestion.classList.add('hidden');
     }
 }
 
-function updateTip(total) {
+function getFixedRadioButtons() {
     const form = document.getElementById('tip-selection');
     const radioButtons = form.querySelectorAll('input[type="radio"]');
 
-    const fixedChoice = Array.from(radioButtons).filter(
+    return Array.from(radioButtons).filter(
         button => parseNum(button.value) > 0
     );
+}
 
+function updateTip(total) {
+    const form = document.getElementById('tip-selection');
+    const fixedChoice = getFixedRadioButtons();
     fixedChoice.forEach(button => updateLabel({ form, total, button }));
 }
 
@@ -86,6 +92,19 @@ function clearZero(event) {
     event.target.value = num == 0 ? '' : num.toFixed(2);
 }
 
+function clearManualTip() {
+    document.getElementById('manual-tip').value = '';
+    document.getElementById('custom-total').textContent = 'total: $_____';
+}
+
+function changeScroll() {
+    if (window.innerWidth > 600) return;
+    document.getElementById('manual-tip').scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+    });
+}
+
 window.onload = () => {
     const date = document.getElementById('date');
     const time = document.getElementById('time');
@@ -94,6 +113,10 @@ window.onload = () => {
     updateTime(time);
 
     setInterval(() => updateTime(time), 1000);
+
+    getFixedRadioButtons().forEach(button =>
+        button.addEventListener('input', clearManualTip)
+    );
 
     const totalInput = document.getElementById('total');
     totalInput.addEventListener('input', totalOnChange);
@@ -108,4 +131,5 @@ window.onload = () => {
     manualTip.addEventListener('focusout', e =>
         validateInput(e, num => num ^ (num > -1))
     );
+    manualTip.addEventListener('focusout', manualTipOnChange);
 };

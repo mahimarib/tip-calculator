@@ -33,7 +33,7 @@ header {
     text-align: center;
 }
 
-.time-container {
+#time-container {
     display: flex;
     justify-content: space-between;
     border-top: 2px dashed black;
@@ -41,7 +41,7 @@ header {
     margin: 2em 0;
 }
 
-.time-container p {
+#time-container p {
     margin: 0.5em 0;
 }
 

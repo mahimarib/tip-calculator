@@ -25,7 +25,7 @@ function totalOnChange(event) {
     const noTip = document.getElementById('no-tip');
     const tipSuggestion = document.getElementById('suggestion');
 
-    if (total && total > -1) {
+    if (total && total > 0) {
         noTip.classList.add('hidden');
         tipSuggestion.classList.remove('hidden');
         tipSuggestion.addEventListener('transitionstart', changeScroll);
